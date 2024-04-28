@@ -33,22 +33,12 @@ namespace csharpcrud
         private void button1_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand command = new SqlCommand($"insert into ProductInfo_Tab values({int.Parse(textBox1.Text)},'{textBox1.Text}','{textBox2.Text}','{comboBox1.Text}', getdate())", con);
+            SqlCommand command = new SqlCommand($"insert into ProductInfo_Tab values({int.Parse(textBox1.Text)},'{textBox1.Text}','{textBox2.Text}','{comboBox1.Text}', getdate(),getdate())", con);
             command.ExecuteNonQuery();
             con.Close();
             BindData();
             MessageBox.Show("Successfully Inserted.");
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            con.Open();
-            SqlCommand command = new SqlCommand($"UPDATE ProductInfo_Tab SET ItemName = '{textBox1.Text}', Design = '{textBox2.Text}', Color = '{comboBox1.Text}', UpdateDate = GETDATE() WHERE ProductID = {int.Parse(textBox1.Text)}", con);
-            command.ExecuteNonQuery();
-            con.Close();
-            BindData();
-            MessageBox.Show("Successfully Updated.");
         }
 
 
@@ -59,6 +49,36 @@ namespace csharpcrud
             DataTable dt = new DataTable();
             sd.Fill(dt);
             dataGridView1.DataSource = dt;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand command = new SqlCommand($"UPDATE ProductInfo_Tab SET ItemName = '{textBox2.Text}', Design = '{textBox3.Text}', Color = '{comboBox1.Text}', UpdateDate = getdate() WHERE ProductID = {int.Parse(textBox1.Text)}", con);
+            command.ExecuteNonQuery();
+            con.Close();
+            BindData();
+            MessageBox.Show("Successfully Updated.");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand command = new SqlCommand($"DELETE ProductInfo_Tab where ProductID = '{textBox1.Text}'", con);
+            command.ExecuteNonQuery();
+            con.Close();
+            BindData();
+            MessageBox.Show("Successfully Deleted.");
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

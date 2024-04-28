@@ -16,7 +16,7 @@ namespace csharpcrud
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new crud());
+            Application.Run(new Login());
         }
     }
 }
